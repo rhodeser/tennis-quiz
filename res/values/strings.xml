@@ -1,8 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="app_name">TennisQuiz</string>
+	<string name="app_name">GeoQuiz</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+	<string name="true_button">True</string>
+	<string name="false_button">False</string>
+	<string name="correct_toast">Correct!</string>
+	<string name="incorrect_toast">Incorrect!</string>
+	<string name="next_button">Next</string>
+	<string name="question_oceans">The Pacific Ocean is larger than the Atlantic Ocean.</string>
+	<string name="question_mideast">The Suez Canal connects the Red Sea and the Indian Ocean.</string>
+	<string name="question_africa">The source of the Nile River is inside your mom</string>
+	<string name="question_americas">The Amazon River is the longest river in all of the Americans.</string>
+	<string name="question_asia">Lake Baikal is the world\'s oldest freshwater lake.</string>
+	<string name="cheat_button">Cheat!</string>
+	<string name="warning_text">Are you sure you want to do this?</string>
+	<string name="show_answer_button">Show Answer</string>
+	<string name="judgment_toast">Cheating is wrong.</string>
 
+	
+	<string name="question0">Question 0</string>
+	<string name="choice01">Answer A</string>
+	<string name="choice02">Answer B</string>
+	<string name="choice03">Answer C</string>
+	<string name="choice04">Answer D</string>
+
+	<string name="question1">Question 1</string>
+	<string name="choice11">Answer 2A</string>
+	<string name="choice12">Answer 2B</string>
+	<string name="choice13">Answer 2C</string>
+	<string name="choice14">Answer 2D</string>
+	
+	<string name="question2">Question 2</string>
+	<string name="choice21">Answer 3A</string>
+	<string name="choice22">Answer 3B</string>
+	<string name="choice23">Answer 3C</string>
+	<string name="choice24">Answer 3D</string>
+	
+	<string name="question3">Question 3</string>
+	<string name="choice31">Answer 4A</string>
+	<string name="choice32">Answer 4B</string>
+	<string name="choice33">Answer 4C</string>
+	<string name="choice34">Answer 4D</string>
+	
+	<string name="question4">Question 4</string>
+	<string name="choice41">Answer 4A</string>
+	<string name="choice42">Answer 4B</string>
+	<string name="choice43">Answer 4C</string>
+	<string name="choice44">Answer 4D</string>
+	
 </resources>
+
+
