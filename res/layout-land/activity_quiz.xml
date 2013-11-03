@@ -1,20 +1,20 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:gravity="top"
-    android:orientation="vertical" >
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent" >
 
     <TextView
         android:id="@+id/question_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:padding="24dp" />
 
     <RadioGroup
         android:id="@+id/radioGroup1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="left" >
+        android:layout_gravity="left"
+        android:padding="24dp" >
 
         <RadioButton
             android:id="@+id/radio0"
@@ -43,35 +43,30 @@
             android:text="@string/choice04" />
     </RadioGroup>
 
-
-        <Button
-            android:id="@+id/ok_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/ok_button" />
-        
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-
-	<Button
-	    android:id="@+id/cheat_button"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_gravity="bottom|left"
-	    android:text="@string/cheat_button" />
-
 	<Button
 	    android:id="@+id/next_button"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:drawableRight="@drawable/arrow_right"
 	    android:layout_gravity="bottom|right"
+	    android:drawableRight="@drawable/arrow_right"
 	    android:text="@string/next_button" />
 
-	</LinearLayout>
+	    <Button
+	        android:id="@+id/cheat_button"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="bottom|left"
+	        android:text="@string/cheat_button" />
+	
 
-</LinearLayout>
+
+	    <Button
+	        android:id="@+id/ok_button"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center_vertical"
+	        android:layout_marginTop="48dp"
+	        android:text="@string/ok_button" />
+
+
+</FrameLayout>

@@ -9,10 +9,11 @@ import android.widget.TextView;
 
 public class CheatActivity extends Activity {
 
-	public static final String EXTRA_ANSWER_IS_TRUE = "com.bignerdranch.android.geoquiz.answer_is_true";
-	public static final String EXTRA_ANSWER_SHOWN="com.bignerdranch.android.geoquiz.answer_shown";
+	public static final String EXTRA_ANSWER_IS_TRUE = "edu.pdx.ece.erikrhodes.ece510.tennisquiz.answer_is_true";
+	public static final String EXTRA_ANSWER_SHOWN="edu.pdx.ece.erikrhodes.ece510.tennisquiz.answer_shown";
 	private boolean mAnswerIsTrue;
 	private TextView mAnswerTextView;
+	//create String for correct answer
 	private Button mShowAnswer;
 	
 	private void setAnswerShownResult(boolean isAnswerShown){
@@ -26,6 +27,7 @@ public class CheatActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cheat);
 		setAnswerShownResult(false);
+		//getStringExtra 
 		mAnswerIsTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
 		
 		mAnswerTextView = (TextView)findViewById(R.id.answerTextView);
@@ -33,13 +35,14 @@ public class CheatActivity extends Activity {
 		mShowAnswer = (Button)findViewById(R.id.showAnswerButton);
 		mShowAnswer.setOnClickListener(new View.OnClickListener(){
 			@Override
+			//if they want to cheat, set answer to correct one
 			public void onClick(View v) {
-				if (mAnswerIsTrue) {
-					mAnswerTextView.setText(R.string.true_button);
-				}
-				else {
-					mAnswerTextView.setText(R.string.false_button);
-				}
+				//if (mAnswerIsTrue) {
+				//	mAnswerTextView.setText(R.string.true_button);
+			//	}
+			//	else {
+			//		mAnswerTextView.setText(R.string.false_button);
+			//	}
 				setAnswerShownResult(true);
 			}
 		});	
