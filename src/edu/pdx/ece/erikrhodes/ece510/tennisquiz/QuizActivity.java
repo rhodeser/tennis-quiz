@@ -41,13 +41,13 @@ public class QuizActivity extends Activity {
 	//	mQuestionTextView.setText(multiquestion.getQuestion());
 		//mQuestionRadioButton1.setText(multiquestion.getChoice());
 		
-		//multiquestion = mQuestionList.get(mCurrentIndex);
+		multiquestion = mQuestionList.get(mCurrentIndex);
 		
-	//	mQuestionTextView.setText(multiquestion.getQuestion());
-		mQuestionRadioButton1.setText(R.string.choice01);
-		mQuestionRadioButton2.setText(R.string.choice02);
-		mQuestionRadioButton3.setText(R.string.choice03);
-		mQuestionRadioButton4.setText(R.string.choice04);
+		mQuestionTextView.setText(multiquestion.getQuestion());
+		mQuestionRadioButton1.setText(multiquestion.getChoice()[0]);
+		mQuestionRadioButton2.setText(multiquestion.getChoice()[1]);
+		mQuestionRadioButton3.setText(multiquestion.getChoice()[2]);
+		mQuestionRadioButton4.setText(multiquestion.getChoice()[3]);
 //TODO: Index through questions to display new content
 
 			}
@@ -56,17 +56,18 @@ public class QuizActivity extends Activity {
 		String userString;
 		int messageToDisplay = 0;
 		userString = getString(userChoice);
-	//	Log.d(userString, "is de userString");
-	//	Log.d(correctAnswer, "is de correctAnswer");
+		Log.d(userString, "is de userString");
+		Log.d(correctAnswer, "is de correctAnswer");
 	if (mIsCheater) {
 		messageToDisplay = R.string.judgment_toast;
 		}
 	else {
 		if  (userString == correctAnswer) {
 			messageToDisplay = R.string.correct_toast;
-			//messageToDisplay = userChoice;
+			messageToDisplay = userChoice;
 		}else {
 			messageToDisplay = R.string.incorrect_toast;
+			messageToDisplay = userChoice;
 		}
 	}
 	//Context = instance of Activity (subclass of Context). needed to find string's R.id
@@ -116,7 +117,7 @@ public class QuizActivity extends Activity {
 			public void onClick(View v) {
 			int userChoice;
 			userChoice = mQuestionRadioGroup.getCheckedRadioButtonId();
-			Log.d(TAG, "Got HEEEEEEEM", new Exception());
+		//	Log.d(TAG, "Got HEEEEEEEM", new Exception());
 			checkAnswer(userChoice);
 			
 			//if (selection == R.string.choice03){}
@@ -137,7 +138,7 @@ public class QuizActivity extends Activity {
 	mNextButton.setOnClickListener(new View.OnClickListener() {
 		@Override
 			public void onClick(View v) {
-		//	mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.getQuestions().size();
+			mCurrentIndex = (mCurrentIndex + 1) % 5;
 		//	index by 5
 			mIsCheater = false;
 			updateQuestion();
