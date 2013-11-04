@@ -28,6 +28,7 @@ public class CheatActivity extends Activity {
 		setContentView(R.layout.activity_cheat);
 		setAnswerShownResult(false);
 		//getStringExtra 
+		//pass the string/int answer along with this intent, then use it
 		mAnswerIsTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
 		
 		mAnswerTextView = (TextView)findViewById(R.id.answerTextView);
@@ -43,6 +44,8 @@ public class CheatActivity extends Activity {
 			//	else {
 			//		mAnswerTextView.setText(R.string.false_button);
 			//	}
+				//set my answer here as text, not toast
+				//just display the string, no logic
 				setAnswerShownResult(true);
 			}
 		});	

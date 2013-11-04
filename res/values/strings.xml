@@ -17,35 +17,35 @@
 	<string name="judgment_toast">Cheating is wrong.</string>
 
 	
-	<string name="question0">Question 0</string>
-	<string name="choice01">Answer A</string>
-	<string name="choice02">Answer B</string>
-	<string name="choice03">Answer C</string>
-	<string name="choice04">Answer D</string>
+	<string name="question0">Most tennis players are </string>
+	<string name="choice01">Rich and spoiled</string>
+	<string name="choice02">Annoying to be around</string>
+	<string name="choice03">Douchebags </string>
+	<string name="choice04">All of the above</string>
 
-	<string name="question1">Question 1</string>
-	<string name="choice11">Answer 2A</string>
-	<string name="choice12">Answer 2B</string>
-	<string name="choice13">Answer 2C</string>
-	<string name="choice14">Answer 2D</string>
+	<string name="question1">Which surface is tennis not played on?</string>
+	<string name="choice11">Grass</string>
+	<string name="choice12">Carpet</string>
+	<string name="choice13">Wood</string>
+	<string name="choice14">Clay</string>
+	<!-- surfaces, golden set, di -->
+	<string name="question2">The longest tennis match ever lasted for:</string>
+	<string name="choice21">5 hours 41 minutes</string>
+	<string name="choice22">7 hours 20 minutes</string>
+	<string name="choice23">8 hours 24 minutes</string>
+	<string name="choice24">11 hours 5 minutes</string>
 	
-	<string name="question2">Question 2</string>
-	<string name="choice21">Answer 3A</string>
-	<string name="choice22">Answer 3B</string>
-	<string name="choice23">Answer 3C</string>
-	<string name="choice24">Answer 3D</string>
+	<string name="question3">When a player wins every single point of a set, it\'s called a</string>
+	<string name="choice31">Bagel</string>
+	<string name="choice32">Breadstick</string>
+	<string name="choice33">Magic Set</string>
+	<string name="choice34">Golden Set</string>
 	
-	<string name="question3">Question 3</string>
-	<string name="choice31">Answer 4A</string>
-	<string name="choice32">Answer 4B</string>
-	<string name="choice33">Answer 4C</string>
-	<string name="choice34">Answer 4D</string>
-	
-	<string name="question4">Question 4</string>
-	<string name="choice41">Answer 4A</string>
-	<string name="choice42">Answer 4B</string>
-	<string name="choice43">Answer 4C</string>
-	<string name="choice44">Answer 4D</string>
+	<string name="question4">The fastest serve ever recorded was</string>
+	<string name="choice41">163.4 mph</string>
+	<string name="choice42">191.1 mph</string>
+	<string name="choice43">289 km/h</string>
+	<string name="choice44">211 km/h</string>
 	
 </resources>
 

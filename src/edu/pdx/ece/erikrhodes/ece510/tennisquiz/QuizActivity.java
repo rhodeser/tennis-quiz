@@ -34,12 +34,14 @@ public class QuizActivity extends Activity {
 	//	multiquestion = mQuestionBank.getQuestions().get(mCurrentIndex);
 	//	mQuestionTextView.setText(multiquestion.getQuestion());
 		//mQuestionRadioButton1.setText(multiquestion.getChoice());
+		
+		
 		mQuestionTextView.setText(R.string.question0);
 		mQuestionRadioButton1.setText(R.string.choice01);
 		mQuestionRadioButton2.setText(R.string.choice02);
 		mQuestionRadioButton3.setText(R.string.choice03);
 		mQuestionRadioButton4.setText(R.string.choice04);
-
+//TODO: Index through questions to display new content
 
 		
 			}
@@ -81,6 +83,7 @@ public class QuizActivity extends Activity {
 		//Log.d(TAG, "onCreate(Bundle) called");
 		setContentView(R.layout.activity_quiz);
 		//grab the object TextView by ID, casting it. 
+		//create the simpleton here
 		mQuestionTextView = (TextView)findViewById(R.id.question_text_view);
 	
 		mQuestionRadioButton1 = (RadioButton)findViewById(R.id.radio0);
@@ -95,7 +98,8 @@ public class QuizActivity extends Activity {
 		mOKButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-			//get their selection
+			//getchecked or selected on radiogroup, 
+			//can check resource ids, 
 			// call checkAnswer(userChoice);
 			}
 			});
@@ -106,6 +110,7 @@ public class QuizActivity extends Activity {
 		@Override
 			public void onClick(View v) {
 		//	mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.getQuestions().size();
+		//	index by 5
 			mIsCheater = false;
 			updateQuestion();
 			}
