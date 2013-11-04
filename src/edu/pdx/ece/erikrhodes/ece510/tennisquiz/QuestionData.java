@@ -1,6 +1,6 @@
 package edu.pdx.ece.erikrhodes.ece510.tennisquiz;
 import java.util.ArrayList;
-
+import edu.pdx.ece.erikrhodes.ece510.tennisquiz.R;
 import android.content.Context;
 
 //simpleton class, create the complete data model of all questions, answers, etc
@@ -10,10 +10,11 @@ public class QuestionData {
 	private static QuestionData sQuestionData;
 		//private constructor
 	private Context mAppContext;
-	private String mCorrectAnswer;
+	private String mCorrectAnswer = "Douchebags";
 	private MultiQuestion multiquestion;
 	
-	private QuestionData (Context appContext) {
+	private
+	QuestionData (Context appContext) {
 		mAppContext = appContext;
 		//create array of questions
 		mMultiQuestions = new ArrayList<MultiQuestion>();
@@ -26,18 +27,16 @@ public class QuestionData {
 		int[] choice3 = {R.string.choice31, R.string.choice32, R.string.choice33, R.string.choice34};
 		int[] choice4 = {R.string.choice41, R.string.choice42, R.string.choice43, R.string.choice44};
 		
-		
 		//Passed answer not by number but by the correct choice
-		mCorrectAnswer = multiquestion.getAnswer();
 		MultiQuestion temp = new MultiQuestion(R.string.question0,mCorrectAnswer, choice0);		//answer always option 3
 		mMultiQuestions.add(temp);
-		temp = new MultiQuestion(R.string.question1,mCorrectAnswer, choice1);
+		temp = new MultiQuestion(R.string.question1,"Douchebags", choice1);
 		mMultiQuestions.add(temp);
-		temp = new MultiQuestion(R.string.question2,mCorrectAnswer, choice2);
+		temp = new MultiQuestion(R.string.question2,"Douchebags", choice2);
 		mMultiQuestions.add(temp);
-		temp = new MultiQuestion(R.string.question3,mCorrectAnswer, choice3);
+		temp = new MultiQuestion(R.string.question3,"Douchebags", choice3);
 		mMultiQuestions.add(temp);
-		temp = new MultiQuestion(R.string.question4,mCorrectAnswer, choice4);
+		temp = new MultiQuestion(R.string.question4,"Douchebags", choice4);
 		mMultiQuestions.add(temp);
 		
 	}

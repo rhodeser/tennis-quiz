@@ -1,5 +1,7 @@
 package edu.pdx.ece.erikrhodes.ece510.tennisquiz;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,9 +27,13 @@ public class QuizActivity extends Activity {
 	private RadioButton mQuestionRadioButton4;
 	private RadioGroup mQuestionRadioGroup;
 	private QuestionData mQuestionBank;
+	private static final String KEY_INDEX = "index";
+	private ArrayList<MultiQuestion> mQuestionList;
 	private int mCurrentIndex = 0;
 	private boolean mIsCheater;
 	private static final String TAG = "QuizActivity";
+	
+	
 	private void updateQuestion() {
 		//Log.d(TAG, "Updating question text for question #" +mCurrentIndex, new Exception());
 		//int question = R.string.question0;
@@ -35,26 +41,30 @@ public class QuizActivity extends Activity {
 	//	mQuestionTextView.setText(multiquestion.getQuestion());
 		//mQuestionRadioButton1.setText(multiquestion.getChoice());
 		
+		//multiquestion = mQuestionList.get(mCurrentIndex);
 		
-		mQuestionTextView.setText(R.string.question0);
+	//	mQuestionTextView.setText(multiquestion.getQuestion());
 		mQuestionRadioButton1.setText(R.string.choice01);
 		mQuestionRadioButton2.setText(R.string.choice02);
 		mQuestionRadioButton3.setText(R.string.choice03);
 		mQuestionRadioButton4.setText(R.string.choice04);
 //TODO: Index through questions to display new content
 
-		
 			}
-	private void checkAnswer(String userChoice) {
-		String correctAnswer = multiquestion.getAnswer();	//Get correct answer
+	private void checkAnswer(int userChoice) {
+		String correctAnswer = mQuestionList.get(mCurrentIndex).getAnswer();
+		String userString;
 		int messageToDisplay = 0;
-	
+		userString = getString(userChoice);
+	//	Log.d(userString, "is de userString");
+	//	Log.d(correctAnswer, "is de correctAnswer");
 	if (mIsCheater) {
 		messageToDisplay = R.string.judgment_toast;
 		}
 	else {
-		if  (userChoice == correctAnswer) {
+		if  (userString == correctAnswer) {
 			messageToDisplay = R.string.correct_toast;
+			//messageToDisplay = userChoice;
 		}else {
 			messageToDisplay = R.string.incorrect_toast;
 		}
@@ -77,19 +87,25 @@ public class QuizActivity extends Activity {
 	//@override checks that class actually has method that we're overriding
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		//
 		super.onCreate(savedInstanceState);
-		
+		//create static singleton, then array from there
+	
 		//Log.d(TAG, "onCreate(Bundle) called");
 		setContentView(R.layout.activity_quiz);
-		//grab the object TextView by ID, casting it. 
-		//create the simpleton here
-		mQuestionTextView = (TextView)findViewById(R.id.question_text_view);
-	
+		//populate list with questions
+		//QuestionList = mQuestionBank.getQuestions();
+		mQuestionList = QuestionData.get(this).getQuestions();
+		
+
+		mQuestionRadioGroup = (RadioGroup)findViewById(R.id.radioGroup1);
 		mQuestionRadioButton1 = (RadioButton)findViewById(R.id.radio0);
 		mQuestionRadioButton2 = (RadioButton)findViewById(R.id.radio1);
 		mQuestionRadioButton3 = (RadioButton)findViewById(R.id.radio2);
 		mQuestionRadioButton4 = (RadioButton)findViewById(R.id.radio3);
+		
+		//grab the object TextView by ID, casting it. 
+		//create the simpleton here
+		mQuestionTextView = (TextView)findViewById(R.id.question_text_view);
 		
 	//retrieve button by R.id and set Button to inflated widget of type view, cast to type Button. 
 		mOKButton = (Button)findViewById(R.id.ok_button);
@@ -98,7 +114,19 @@ public class QuizActivity extends Activity {
 		mOKButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-			//getchecked or selected on radiogroup, 
+			int userChoice;
+			userChoice = mQuestionRadioGroup.getCheckedRadioButtonId();
+			Log.d(TAG, "Got HEEEEEEEM", new Exception());
+			checkAnswer(userChoice);
+			
+			//if (selection == R.string.choice03){}
+				
+				
+			
+			//else {}
+				
+			
+			//get selected on radiogroup, 
 			//can check resource ids, 
 			// call checkAnswer(userChoice);
 			}
@@ -128,6 +156,12 @@ public class QuizActivity extends Activity {
 		});
 		updateQuestion();
 	}
+	public void onSaveInstanceState(Bundle savedInstanceState) {
+		super.onSaveInstanceState(savedInstanceState);
+		Log.i(TAG, "onSaveInstanceState");
+		savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
