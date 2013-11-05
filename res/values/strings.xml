@@ -6,22 +6,17 @@
 	<string name="correct_toast">Correct!</string>
 	<string name="incorrect_toast">Incorrect!</string>
 	<string name="next_button">Next</string>
-	<string name="question_oceans">The Pacific Ocean is larger than the Atlantic Ocean.</string>
-	<string name="question_mideast">The Suez Canal connects the Red Sea and the Indian Ocean.</string>
-	<string name="question_africa">The source of the Nile River is inside your mom</string>
-	<string name="question_americas">The Amazon River is the longest river in all of the Americans.</string>
-	<string name="question_asia">Lake Baikal is the world\'s oldest freshwater lake.</string>
 	<string name="cheat_button">Cheat!</string>
 	<string name="warning_text">Are you sure you want to do this?</string>
 	<string name="show_answer_button">Show Answer</string>
 	<string name="judgment_toast">Cheating is wrong.</string>
 
 	
-	<string name="question0">Most tennis players are </string>
-	<string name="choice01">Rich and spoiled</string>
-	<string name="choice02">Annoying to be around</string>
-	<string name="choice03">Douchebags </string>
-	<string name="choice04">All of the above</string>
+	<string name="question0">The modern game of tennis was created in which country? </string>
+	<string name="choice01">France</string>
+	<string name="choice02">Great Britain</string>
+	<string name="choice03">America</string>
+	<string name="choice04">China</string>
 
 	<string name="question1">Which surface is tennis not played on?</string>
 	<string name="choice11">Grass</string>
@@ -29,23 +24,31 @@
 	<string name="choice13">Wood</string>
 	<string name="choice14">Clay</string>
 	<!-- surfaces, golden set, di -->
-	<string name="question2">The longest tennis match ever lasted for:</string>
+	<string name="question2">The longest tennis match lasted for how long?</string>
 	<string name="choice21">5 hours 41 minutes</string>
 	<string name="choice22">7 hours 20 minutes</string>
 	<string name="choice23">8 hours 24 minutes</string>
 	<string name="choice24">11 hours 5 minutes</string>
 	
-	<string name="question3">When a player wins every single point of a set, it\'s called a</string>
+	<string name="question3">When a player wins every single point in a set, it\'s called a:</string>
 	<string name="choice31">Bagel</string>
 	<string name="choice32">Breadstick</string>
 	<string name="choice33">Magic Set</string>
 	<string name="choice34">Golden Set</string>
 	
-	<string name="question4">The fastest serve ever recorded was</string>
+	<string name="question4">The fastest serve ever recorded was:</string>
 	<string name="choice41">163.4 mph</string>
 	<string name="choice42">191.1 mph</string>
 	<string name="choice43">289 km/h</string>
 	<string name="choice44">211 km/h</string>
+	
+	<string name="question5">Esther Vergeer has won how many consecutive women\'s wheelchair matches? </string>
+	<string name="choice51">45</string>
+	<string name="choice52">81</string>
+	<string name="choice53">186</string>
+	<string name="choice54">470</string>
+	
+	
 	
 </resources>
 
