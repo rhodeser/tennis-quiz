@@ -46,7 +46,7 @@
 
     <Button
         android:id="@+id/ok_button"
-        android:layout_width="144dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="46dp"
@@ -55,26 +55,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:orientation="horizontal" 
-        android:layout_marginTop="22dp">
+        android:layout_marginTop="22dp"
+        android:orientation="horizontal" >
 
         <Button
             android:id="@+id/cheat_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cheat_button" />
-        
+
         <Button
-            android:layout_width="172dp"
+            android:layout_width="224dp"
             android:layout_height="wrap_content"
             android:visibility="invisible" />
 
-        <Button
+        <ImageButton
             android:id="@+id/next_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableRight="@drawable/arrow_right"
-            android:text="@string/next_button" />
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginTop="2dp"
+            android:contentDescription="@string/next_desc"
+            android:src="@drawable/arrow_right" />
 
     </LinearLayout>
 

@@ -14,7 +14,7 @@ android:layout_height="match_parent" >
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="24dp"
         android:padding="24dp" >
 
         <RadioButton
@@ -44,13 +44,13 @@ android:layout_height="match_parent" >
             android:text="@string/choice04" />
     </RadioGroup>
 
-	<Button
-	    android:id="@+id/next_button"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_gravity="bottom|right"
-	    android:drawableRight="@drawable/arrow_right"
-	    android:text="@string/next_button" />
+<ImageButton
+    android:id="@+id/next_button"
+    android:layout_width="64dp"
+    android:layout_height="48dp"
+    android:layout_gravity="bottom|right"
+    android:contentDescription="@string/next_desc"
+    android:src="@drawable/arrow_right" />
 
 	    <Button
 	        android:id="@+id/cheat_button"

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -18,7 +19,7 @@ public class QuizActivity extends Activity {
 
 	private Button mOKButton;
 	private Button mCheatButton;
-	private Button mNextButton;
+	private ImageButton mNextButton;
 	private MultiQuestion multiquestion;
 	private TextView mQuestionTextView;
 	private RadioButton mQuestionRadioButton1;
@@ -158,7 +159,7 @@ public class QuizActivity extends Activity {
 		});
 
 	
-	mNextButton = (Button)findViewById(R.id.next_button);	
+	mNextButton = (ImageButton)findViewById(R.id.next_button);	
 	mNextButton.setOnClickListener(new View.OnClickListener() {
 		@Override
 			public void onClick(View v) {
