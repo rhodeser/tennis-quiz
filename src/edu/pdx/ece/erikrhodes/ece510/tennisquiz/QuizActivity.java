@@ -53,23 +53,46 @@ public class QuizActivity extends Activity {
 			}
 	private void checkAnswer(int userChoice) {
 		String correctAnswer = mQuestionList.get(mCurrentIndex).getAnswer();
-		String userString;
+		String userString = getString(multiquestion.getChoice()[2]);
 		int messageToDisplay = 0;
-		userString = getString(userChoice);
+		//need to string compare w/ buttons text
+		//resource of text field
+		
+		if (mIsCheater) {
+			messageToDisplay = R.string.judgment_toast;
+			}
+		
+		if (userChoice == R.id.radio0){//check if text of radio0 == answer text
+			if (getString(multiquestion.getChoice()[0]).equals(correctAnswer)) messageToDisplay = R.string.correct_toast;
+			else messageToDisplay = R.string.incorrect_toast;
+		}
+		if (userChoice == R.id.radio1){
+			if (getString(multiquestion.getChoice()[1]).equals(correctAnswer)) messageToDisplay = R.string.correct_toast;
+			else messageToDisplay = R.string.incorrect_toast;
+		}	
+		if (userChoice == R.id.radio2){	
+			if (getString(multiquestion.getChoice()[2]).equals(correctAnswer))
+				{
+				messageToDisplay = R.string.correct_toast;
+				}
+			else {
+				messageToDisplay = R.string.incorrect_toast;
+				}
+		}
+	    if (userChoice == R.id.radio3){		
+	    	if (getString(multiquestion.getChoice()[3]).equals(correctAnswer)) messageToDisplay = R.string.correct_toast;
+			else messageToDisplay = R.string.incorrect_toast;
+	    }
+	    
+	    
+		//get R.id of all 4 buttons.  if one equal to selected, get that string
+//		R.string.choice01
+	//	getString(resId)
+//		getText(resId)
+	//	userString = getString(userChoice);
 		Log.d(userString, "is de userString");
 		Log.d(correctAnswer, "is de correctAnswer");
-	if (mIsCheater) {
-		messageToDisplay = R.string.judgment_toast;
-		}
-	else {
-		if  (userString == correctAnswer) {
-			messageToDisplay = R.string.correct_toast;
-			messageToDisplay = userChoice;
-		}else {
-			messageToDisplay = R.string.incorrect_toast;
-			messageToDisplay = userChoice;
-		}
-	}
+		Log.d("Message to display is", Integer.toString(messageToDisplay));
 	//Context = instance of Activity (subclass of Context). needed to find string's R.id
 	//this refers to anonymous class View.OnClickListener.
 	Toast.makeText(this, messageToDisplay, Toast.LENGTH_SHORT)
@@ -120,6 +143,7 @@ public class QuizActivity extends Activity {
 		//	Log.d(TAG, "Got HEEEEEEEM", new Exception());
 			checkAnswer(userChoice);
 			
+			Log.d(TAG, Integer.toString(userChoice));
 			//if (selection == R.string.choice03){}
 				
 				

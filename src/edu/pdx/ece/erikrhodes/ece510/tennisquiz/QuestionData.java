@@ -2,6 +2,7 @@ package edu.pdx.ece.erikrhodes.ece510.tennisquiz;
 import java.util.ArrayList;
 import edu.pdx.ece.erikrhodes.ece510.tennisquiz.R;
 import android.content.Context;
+import android.util.Log;
 
 //simpleton class, create the complete data model of all questions, answers, etc
 public class QuestionData {
@@ -10,7 +11,7 @@ public class QuestionData {
 	private static QuestionData sQuestionData;
 		//private constructor
 	private Context mAppContext;
-	private String mCorrectAnswer = "Douchebags";
+	private String mCorrectAnswer;
 	private MultiQuestion multiquestion;
 	
 	private
@@ -26,9 +27,10 @@ public class QuestionData {
 		int[] choice2 = {R.string.choice21, R.string.choice22, R.string.choice23, R.string.choice24};
 		int[] choice3 = {R.string.choice31, R.string.choice32, R.string.choice33, R.string.choice34};
 		int[] choice4 = {R.string.choice41, R.string.choice42, R.string.choice43, R.string.choice44};
-		
+		//mCorrectAnswer = multiquestion.getAnswer();
+		//Log.d(mCorrectAnswer, "is dat answer");
 		//Passed answer not by number but by the correct choice
-		MultiQuestion temp = new MultiQuestion(R.string.question0,mCorrectAnswer, choice0);		//answer always option 3
+		MultiQuestion temp = new MultiQuestion(R.string.question0,"Douchebags", choice0);		//answer always option 3
 		mMultiQuestions.add(temp);
 		temp = new MultiQuestion(R.string.question1,"Douchebags", choice1);
 		mMultiQuestions.add(temp);
