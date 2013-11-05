@@ -28,9 +28,12 @@ public class QuizActivity extends Activity {
 	private RadioGroup mQuestionRadioGroup;
 	private QuestionData mQuestionBank;
 	private static final String KEY_INDEX = "index";
+	private static final String KEY_CHEATER = "cheater";
+	private static final String KEY_ANSWERED = "answered";
 	private ArrayList<MultiQuestion> mQuestionList;
 	private int mCurrentIndex = 0;
 	private boolean mIsCheater;
+	private boolean mAnswered;
 	private static final String TAG = "QuizActivity";
 	
 	
@@ -42,12 +45,19 @@ public class QuizActivity extends Activity {
 		//mQuestionRadioButton1.setText(multiquestion.getChoice());
 		
 		multiquestion = mQuestionList.get(mCurrentIndex);
-		
+		Log.d(multiquestion.getAnswer(), "the answer");
 		mQuestionTextView.setText(multiquestion.getQuestion());
 		mQuestionRadioButton1.setText(multiquestion.getChoice()[0]);
 		mQuestionRadioButton2.setText(multiquestion.getChoice()[1]);
 		mQuestionRadioButton3.setText(multiquestion.getChoice()[2]);
 		mQuestionRadioButton4.setText(multiquestion.getChoice()[3]);
+		mQuestionRadioGroup.clearCheck();
+		mQuestionRadioButton1.setEnabled(true);
+		mQuestionRadioButton2.setEnabled(true);
+		mQuestionRadioButton3.setEnabled(true);
+		mQuestionRadioButton4.setEnabled(true);
+		mOKButton.setEnabled(true);
+		mCheatButton.setEnabled(true);
 //TODO: Index through questions to display new content
 
 			}
@@ -55,14 +65,10 @@ public class QuizActivity extends Activity {
 		String correctAnswer = mQuestionList.get(mCurrentIndex).getAnswer();
 		String userString = getString(multiquestion.getChoice()[2]);
 		int messageToDisplay = 0;
-		//need to string compare w/ buttons text
-		//resource of text field
 		
-		if (mIsCheater) {
-			messageToDisplay = R.string.judgment_toast;
-			}
+
 		
-		if (userChoice == R.id.radio0){//check if text of radio0 == answer text
+		if (userChoice == R.id.radio0){
 			if (getString(multiquestion.getChoice()[0]).equals(correctAnswer)) messageToDisplay = R.string.correct_toast;
 			else messageToDisplay = R.string.incorrect_toast;
 		}
@@ -71,19 +77,17 @@ public class QuizActivity extends Activity {
 			else messageToDisplay = R.string.incorrect_toast;
 		}	
 		if (userChoice == R.id.radio2){	
-			if (getString(multiquestion.getChoice()[2]).equals(correctAnswer))
-				{
-				messageToDisplay = R.string.correct_toast;
-				}
-			else {
-				messageToDisplay = R.string.incorrect_toast;
-				}
+			if (getString(multiquestion.getChoice()[2]).equals(correctAnswer)) messageToDisplay = R.string.correct_toast;
+			else messageToDisplay = R.string.incorrect_toast;
 		}
 	    if (userChoice == R.id.radio3){		
 	    	if (getString(multiquestion.getChoice()[3]).equals(correctAnswer)) messageToDisplay = R.string.correct_toast;
 			else messageToDisplay = R.string.incorrect_toast;
 	    }
 	    
+		if (mIsCheater) {
+			messageToDisplay = R.string.judgment_toast;
+			}
 	    
 		//get R.id of all 4 buttons.  if one equal to selected, get that string
 //		R.string.choice01
@@ -116,8 +120,6 @@ public class QuizActivity extends Activity {
 	
 		//Log.d(TAG, "onCreate(Bundle) called");
 		setContentView(R.layout.activity_quiz);
-		//populate list with questions
-		//QuestionList = mQuestionBank.getQuestions();
 		mQuestionList = QuestionData.get(this).getQuestions();
 		
 
@@ -126,11 +128,11 @@ public class QuizActivity extends Activity {
 		mQuestionRadioButton2 = (RadioButton)findViewById(R.id.radio1);
 		mQuestionRadioButton3 = (RadioButton)findViewById(R.id.radio2);
 		mQuestionRadioButton4 = (RadioButton)findViewById(R.id.radio3);
-		
+	
 		//grab the object TextView by ID, casting it. 
 		//create the simpleton here
 		mQuestionTextView = (TextView)findViewById(R.id.question_text_view);
-		
+		//multiquestion.setAnswer(answer)
 	//retrieve button by R.id and set Button to inflated widget of type view, cast to type Button. 
 		mOKButton = (Button)findViewById(R.id.ok_button);
 	//listen for event, argument takes object that implements OnClickListener)
@@ -139,21 +141,18 @@ public class QuizActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 			int userChoice;
+			mAnswered = true;
 			userChoice = mQuestionRadioGroup.getCheckedRadioButtonId();
+			mQuestionRadioButton1.setEnabled(false);
+			mQuestionRadioButton2.setEnabled(false);
+			mQuestionRadioButton3.setEnabled(false);
+			mQuestionRadioButton4.setEnabled(false);
+			mOKButton.setEnabled(false);
+			mCheatButton.setEnabled(false);
+			
 		//	Log.d(TAG, "Got HEEEEEEEM", new Exception());
 			checkAnswer(userChoice);
-			
-			Log.d(TAG, Integer.toString(userChoice));
-			//if (selection == R.string.choice03){}
-				
-				
-			
-			//else {}
-				
-			
-			//get selected on radiogroup, 
-			//can check resource ids, 
-			// call checkAnswer(userChoice);
+		//	Log.d(TAG, Integer.toString(userChoice));
 			}
 			});
 	
@@ -163,7 +162,7 @@ public class QuizActivity extends Activity {
 		@Override
 			public void onClick(View v) {
 			mCurrentIndex = (mCurrentIndex + 1) % 5;
-		//	index by 5
+			//mQuestionList.size()
 			mIsCheater = false;
 			updateQuestion();
 			}
@@ -174,17 +173,35 @@ public class QuizActivity extends Activity {
 		public void onClick(View v) {
 			Intent i = new Intent(QuizActivity.this, CheatActivity.class);
 		//	boolean answerIsTrue = mQuestionBank[mCurrentIndex].isTrueQuestion();
-			boolean answerIsTrue = true;
-			i.putExtra(CheatActivity.EXTRA_ANSWER_IS_TRUE, answerIsTrue);
+			String answerString = multiquestion.getAnswer();
+			i.putExtra(CheatActivity.EXTRA_ANSWER_IS_TRUE, answerString);
 			startActivityForResult(i, 0);
 			}
 		});
+		if (savedInstanceState != null){
+        mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
+        mIsCheater = savedInstanceState.getBoolean(KEY_CHEATER, false);
+        //mAnswered = savedInstanceState.getBoolean(KEY_ANSWERED, false);
+        mAnswered = savedInstanceState.getBoolean(KEY_ANSWERED);
+        if (mAnswered){
+			mQuestionRadioButton1.setEnabled(false);
+			mQuestionRadioButton2.setEnabled(false);
+			mQuestionRadioButton3.setEnabled(false);
+			mQuestionRadioButton4.setEnabled(false);
+			mOKButton.setEnabled(false);
+			mCheatButton.setEnabled(false);	
+ 
+        }
+        }
+		
 		updateQuestion();
 	}
 	public void onSaveInstanceState(Bundle savedInstanceState) {
 		super.onSaveInstanceState(savedInstanceState);
 		Log.i(TAG, "onSaveInstanceState");
 		savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
+		savedInstanceState.putBoolean(KEY_CHEATER,  mIsCheater);
+		savedInstanceState.putBoolean(KEY_ANSWERED,  mAnswered);
 	}
 	
 	@Override

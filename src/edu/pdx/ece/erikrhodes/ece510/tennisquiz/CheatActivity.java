@@ -8,10 +8,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class CheatActivity extends Activity {
-
-	public static final String EXTRA_ANSWER_IS_TRUE = "edu.pdx.ece.erikrhodes.ece510.tennisquiz.answer_is_true";
+		//insure it comes from the correct activity
+	//public static final String EXTRA_ANSWER_IS_TRUE = "edu.pdx.ece.erikrhodes.ece510.tennisquiz.answer_is_true";
 	public static final String EXTRA_ANSWER_SHOWN="edu.pdx.ece.erikrhodes.ece510.tennisquiz.answer_shown";
 	private boolean mAnswerIsTrue;
+	public static String EXTRA_ANSWER_IS_TRUE;
+	private String mAnswerString;
 	private TextView mAnswerTextView;
 	//create String for correct answer
 	private Button mShowAnswer;
@@ -29,7 +31,8 @@ public class CheatActivity extends Activity {
 		setAnswerShownResult(false);
 		//getStringExtra 
 		//pass the string/int answer along with this intent, then use it
-		mAnswerIsTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
+	//	mAnswerIsTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
+		mAnswerString = getIntent().getStringExtra(EXTRA_ANSWER_IS_TRUE);
 		
 		mAnswerTextView = (TextView)findViewById(R.id.answerTextView);
 		
@@ -46,6 +49,7 @@ public class CheatActivity extends Activity {
 			//	}
 				//set my answer here as text, not toast
 				//just display the string, no logic
+				mAnswerTextView.setText(mAnswerString);
 				setAnswerShownResult(true);
 			}
 		});	
