@@ -1,3 +1,8 @@
+/*This class controls all the data and provides the logic for the sequence of events
+ * 
+ * 
+ * 
+ */
 package edu.pdx.ece.erikrhodes.ece510.tennisquiz;
 
 import java.util.ArrayList;
@@ -28,7 +33,7 @@ public class QuizActivity extends Activity {
 	private RadioButton mQuestionRadioButton4;
 	private RadioGroup mQuestionRadioGroup;
 	private QuestionData mQuestionBank;
-	private static final String KEY_INDEX = "index";
+	private static final String KEY_INDEX = "index";			//Strings used for saving data when Activity is destroyed
 	private static final String KEY_CHEATER = "cheater";
 	private static final String KEY_ANSWERED = "answered";
 	private ArrayList<MultiQuestion> mQuestionList;
@@ -45,6 +50,9 @@ public class QuizActivity extends Activity {
 	//	mQuestionTextView.setText(multiquestion.getQuestion());
 		//mQuestionRadioButton1.setText(multiquestion.getChoice());
 		
+		
+		//
+		
 		multiquestion = mQuestionList.get(mCurrentIndex);
 		mQuestionTextView.setText(multiquestion.getQuestion());
 		mQuestionRadioButton1.setText(multiquestion.getChoice()[0]);
@@ -59,9 +67,10 @@ public class QuizActivity extends Activity {
 		mOKButton.setEnabled(true);
 		mCheatButton.setEnabled(true);
 		mNextButton.setEnabled(false);
-//TODO: Index through questions to display new content
 
 			}
+			//Uses the user's selection Resource ID to check which choice has been selected.  
+			//Checks if the answer is correct, and sets the toast value accordingly
 	private void checkAnswer(int userChoice) {
 		String correctAnswer = mQuestionList.get(mCurrentIndex).getAnswer();
 		//String userString = getString(multiquestion.getChoice()[2]);
@@ -86,21 +95,16 @@ public class QuizActivity extends Activity {
 		if (mIsCheater) {
 			messageToDisplay = R.string.judgment_toast;
 			}
-	    
-		//get R.id of all 4 buttons.  if one equal to selected, get that string
-//		R.string.choice01
-	//	getString(resId)
-//		getText(resId)
-	//	userString = getString(userChoice);
+
 		//Log.d(userString, "is de userString");
 		//Log.d(correctAnswer, "is de correctAnswer");
 	//	Log.d("Message to display is", Integer.toString(messageToDisplay));
-	//Context = instance of Activity (subclass of Context). needed to find string's R.id
 	//this refers to anonymous class View.OnClickListener.
 	Toast.makeText(this, messageToDisplay, Toast.LENGTH_SHORT)
 		.show();
 	}
 	
+	//Default method overridden to keep track of whether the user has cheated or not
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (data == null) {
@@ -109,8 +113,6 @@ public class QuizActivity extends Activity {
 		mIsCheater = data.getBooleanExtra(CheatActivity.EXTRA_ANSWER_SHOWN, false);
 	}
 	
-	
-	//@override checks that class actually has method that we're overriding
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -140,29 +142,29 @@ public class QuizActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				int userChoice;
-				mAnswered = true;
+				mAnswered = true;			//When the OK button has been clicked, remember this state for layout switch
 				userChoice = mQuestionRadioGroup.getCheckedRadioButtonId();
 				if (mQuestionRadioGroup.getCheckedRadioButtonId() != -1){
-				mQuestionRadioButton1.setEnabled(false);
-				mQuestionRadioButton2.setEnabled(false);
-				mQuestionRadioButton3.setEnabled(false);
-				mQuestionRadioButton4.setEnabled(false);
-				mOKButton.setEnabled(false);
-				mCheatButton.setEnabled(false);
-				mNextButton.setEnabled(true);
-				mAnswered = true;
-				Log.d(KEY_ANSWERED, Boolean.toString(mAnswered));
-				 checkAnswer(userChoice);
+					mQuestionRadioButton1.setEnabled(false);
+					mQuestionRadioButton2.setEnabled(false);
+					mQuestionRadioButton3.setEnabled(false);
+					mQuestionRadioButton4.setEnabled(false);
+					mOKButton.setEnabled(false);
+					mCheatButton.setEnabled(false);
+					mNextButton.setEnabled(true);
+					mAnswered = true;
+					Log.d(KEY_ANSWERED, Boolean.toString(mAnswered));
+					 checkAnswer(userChoice);
 		//	Log.d(TAG, Integer.toString(userChoice));
 				}
 			}
 		});
-
 	
 	mNextButton = (ImageButton)findViewById(R.id.next_button);	
 	mNextButton.setOnClickListener(new View.OnClickListener() {
 		@Override
 			public void onClick(View v) {
+						//When the next button is clicked, increment the current index to be used for the new textview 
 			mCurrentIndex = (mCurrentIndex + 1) % 6;
 			//mQuestionList.size()
 			mIsCheater = false;
@@ -172,50 +174,40 @@ public class QuizActivity extends Activity {
 	mNextButton.setEnabled(false);
 	mCheatButton = (Button)findViewById(R.id.cheat_button);
 	mCheatButton.setOnClickListener(new View.OnClickListener() {
+				//Check if Cheat button has been clicked
 		@Override
 		public void onClick(View v) {
 			Intent i = new Intent(QuizActivity.this, CheatActivity.class);
 		//	boolean answerIsTrue = mQuestionBank[mCurrentIndex].isTrueQuestion();
-			String answerString = multiquestion.getAnswer();
-			i.putExtra(CheatActivity.EXTRA_ANSWER_IS_TRUE, answerString);
+			String answerString = multiquestion.getAnswer();		//get the correct answer string and pass it to the Cheat activity
+			i.putExtra(CheatActivity.USER_ANSWER_STRING, answerString);
 			startActivityForResult(i, 0);
 			}
 		});
 	if (savedInstanceState != null){
+				//if we have saved the state, get the values saved
         mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
         mIsCheater = savedInstanceState.getBoolean(KEY_CHEATER, false);
-        //mAnswered = savedInstanceState.getBoolean(KEY_ANSWERED, false);
         mAnswered = savedInstanceState.getBoolean(KEY_ANSWERED,false);
-		if (mAnswered){
+		if (mAnswered){								//disable the radio buttons if we see that the question has been answered already
 			mQuestionRadioButton1.setEnabled(false);
 			mQuestionRadioButton2.setEnabled(false);
 			mQuestionRadioButton3.setEnabled(false);
 			mQuestionRadioButton4.setEnabled(false);
 			mOKButton.setEnabled(false);
-			mCheatButton.setEnabled(false);	
-				
+			mCheatButton.setEnabled(false);		
 		}
-      /*  if (mAnswered){
-			mQuestionRadioButton1.setEnabled(false);
-			mQuestionRadioButton2.setEnabled(false);
-			mQuestionRadioButton3.setEnabled(false);
-			mQuestionRadioButton4.setEnabled(false);
-			mOKButton.setEnabled(false);
-			mCheatButton.setEnabled(false);	*/
- 
-        //}
-        }
-		
+    }
 		updateQuestion();
-	}
+}
 	public void onSaveInstanceState(Bundle savedInstanceState) {
 		super.onSaveInstanceState(savedInstanceState);
 		Log.i(TAG, "onSaveInstanceState");
 		Log.d(KEY_ANSWERED, Boolean.toString(mAnswered));
-		savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
+		savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);		//save the question index, if they cheated, and if they've answered the current question
 		savedInstanceState.putBoolean(KEY_CHEATER,  mIsCheater);
 		savedInstanceState.putBoolean(KEY_ANSWERED,  mAnswered);
-	}
+		}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

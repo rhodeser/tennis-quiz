@@ -1,9 +1,17 @@
+/* Class which creates the array of questions
+ * 
+ * 
+ * 
+ * 
+ */
+
+
 package edu.pdx.ece.erikrhodes.ece510.tennisquiz;
 import java.util.ArrayList;
 
 import android.content.Context;
 
-//simpleton class, create the complete data model of all questions, answers, etc
+//singleton class, create the complete data model of all questions, answers, etc
 public class QuestionData {
 	private ArrayList<MultiQuestion> mMultiQuestions;
 	

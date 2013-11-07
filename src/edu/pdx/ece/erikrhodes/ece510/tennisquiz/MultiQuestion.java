@@ -8,19 +8,13 @@ public class MultiQuestion {
 	private int mChoice[];
 	
 	//create and set, don't create the objects. given already
-	//could delete
+
 	public MultiQuestion (int Question, String Answer, int Choice[]){
 		mQuestion = Question;
 		mAnswer =  Answer;
 		mChoice =  Choice;
 	}
 
-	//public MultiQuestion(int question0, String choice03, int[] choice0) {
-		// TODO Auto-generated constructor stub
-	//}
-
-	//can use getters and setters separately
-	//when someone wants the question, they call the method, you return the question
 	public int getQuestion() {
 		return mQuestion;
 	}

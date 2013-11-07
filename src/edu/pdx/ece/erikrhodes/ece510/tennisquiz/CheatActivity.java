@@ -8,14 +8,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class CheatActivity extends Activity {
-		//insure it comes from the correct activity
-	//public static final String EXTRA_ANSWER_IS_TRUE = "edu.pdx.ece.erikrhodes.ece510.tennisquiz.answer_is_true";
 	public static final String EXTRA_ANSWER_SHOWN="edu.pdx.ece.erikrhodes.ece510.tennisquiz.answer_shown";
-	private boolean mAnswerIsTrue;
-	public static String EXTRA_ANSWER_IS_TRUE;
+	public static String USER_ANSWER_STRING;
 	private String mAnswerString;
 	private TextView mAnswerTextView;
-	//create String for correct answer
 	private Button mShowAnswer;
 	
 	private void setAnswerShownResult(boolean isAnswerShown){
@@ -32,7 +28,7 @@ public class CheatActivity extends Activity {
 		//getStringExtra 
 		//pass the string/int answer along with this intent, then use it
 	//	mAnswerIsTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
-		mAnswerString = getIntent().getStringExtra(EXTRA_ANSWER_IS_TRUE);
+		mAnswerString = getIntent().getStringExtra(USER_ANSWER_STRING);
 		
 		mAnswerTextView = (TextView)findViewById(R.id.answerTextView);
 		
@@ -41,14 +37,6 @@ public class CheatActivity extends Activity {
 			@Override
 			//if they want to cheat, set answer to correct one
 			public void onClick(View v) {
-				//if (mAnswerIsTrue) {
-				//	mAnswerTextView.setText(R.string.true_button);
-			//	}
-			//	else {
-			//		mAnswerTextView.setText(R.string.false_button);
-			//	}
-				//set my answer here as text, not toast
-				//just display the string, no logic
 				mAnswerTextView.setText(mAnswerString);
 				setAnswerShownResult(true);
 			}
