@@ -7,36 +7,24 @@ public class MultiQuestion {
 	private String mAnswer;
 	private int mChoice[];
 	
-	//create and set, don't create the objects. given already
-
 	public MultiQuestion (int Question, String Answer, int Choice[]){
+		//create a object of type MultiQuestion and initialize its variable values to the arguments passed in
 		mQuestion = Question;
-		mAnswer =  Answer;
+		mAnswer =  Answer;			
 		mChoice =  Choice;
 	}
 
 	public int getQuestion() {
 		return mQuestion;
 	}
-		//when question needs to be set, give it the question needing to be set
-	public void setQuestion(int question) {
-		mQuestion = question;
-	}
 
 	public String getAnswer() {
 		return mAnswer;
-	}
-
-	public void setAnswer(String answer) {
-		mAnswer = answer;
 	}
 
 	public int[] getChoice() {
 		return mChoice;
 	}
 
-	public void setChoice(int choice[]) {
-		mChoice = choice;
-	}
 	
 }
